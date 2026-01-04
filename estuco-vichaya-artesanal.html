@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estuco Vichaya | Tradición Artesanal desde los Andes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --primary-dark: #5D2E0C;
+            --primary-light: #A0522D;
+            --accent: #D2691E;
+            --accent-light: #CD853F;
+            --cream: #FDF5E6;
+            --warm-white: #FFFAF0;
+            --stone: #D4C4B0;
+            --earth: #6B4423;
+            --white: #ffffff;
+            --gray-50: #faf9f7;
+            --gray-100: #f5f3f0;
+            --gray-200: #e8e4de;
+            --gray-300: #d4cfc6;
+            --gray-400: #a39e94;
+            --gray-500: #6b6660;
+            --gray-600: #4a4640;
+            --gray-700: #33312d;
+            --gray-800: #1f1d1a;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--warm-white);
+            color: var(--gray-700);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            border-radius: 4px;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .particle-1 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(210, 105, 30, 0.2) 0%, transparent 70%);
+            animation: float1 25s ease-in-out infinite;
+        }
+
+        .particle-2 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(139, 69, 19, 0.15) 0%, transparent 70%);
+            animation: float2 30s ease-in-out infinite;
+        }
+
+        .particle-3 {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(205, 133, 63, 0.2) 0%, transparent 70%);
+            animation: float3 20s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(60px, -30px) rotate(90deg); }
+            50% { transform: translate(30px, 60px) rotate(180deg); }
+            75% { transform: translate(-30px, 30px) rotate(270deg); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 50px) scale(1.1); }
+            66% { transform: translate(50px, -25px) scale(0.9); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(80px, 40px); }
+        }
+
+        /* Texture overlay */
+        .texture-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--cream);
+            border-bottom: 1px solid var(--stone);
+            padding: 10px 0;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .top-bar-left {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .top-bar-item:hover {
+            color: var(--accent);
+        }
+
+        .top-bar-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .top-bar-right svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(-30%, -30%); }
+            50% { transform: translate(30%, 30%); }
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(-5deg) scale(1.05);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            line-height: 1.1;
+        }
+
+        .logo-subtitle {
+            font-size: 0.6rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.4rem 0;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(139, 69, 19, 0.25);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.35);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            padding: 0.7rem 1.4rem;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-btn svg {
+            width: 26px;
+            height: 26px;
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 280px;
+            max-width: 85%;
+            height: 100%;
+            background: var(--warm-white);
+            padding: 2rem 1.5rem;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active .mobile-menu-content {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--stone);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-close svg {
+            width: 24px;
+            height: 24px;
+            color: var(--gray-600);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .mobile-nav-links a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            background: var(--cream);
+            color: var(--accent);
+        }
+
+        .mobile-cta {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--stone);
+        }
+
+        .mobile-cta .btn-primary {
+            width: 100%;
+            justify-content: center;
+            padding: 0.875rem 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--earth) 100%);
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            mix-blend-mode: overlay;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(93, 46, 12, 0.85) 0%, rgba(139, 69, 19, 0.7) 100%);
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: heroParticle 25s linear infinite;
+        }
+
+        @keyframes heroParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(210, 105, 30, 0.3);
+            border: 1px solid rgba(205, 133, 63, 0.5);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.25rem;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-badge svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent-light) 0%, #DEB887 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.75rem;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn-primary {
+            padding: 0.875rem 1.75rem;
+            font-size: 1rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 1.25rem;
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease, background 0.3s ease;
+            flex: 1;
+            min-width: 110px;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.6rem;
+        }
+
+        .stat-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.85;
+            line-height: 1.3;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid rgba(255,255,255,0.1);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.05);
+        }
+
+        .hero-product-float {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            width: 140px;
+            height: 140px;
+            background: var(--white);
+            border-radius: 14px;
+            padding: 0.6rem;
+            box-shadow: var(--shadow-lg);
+            animation: productFloat 4s ease-in-out infinite;
+        }
+
+        .hero-product-float img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes productFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Tradition Section - NEW */
+        .tradition {
+            position: relative;
+            padding: 5rem 0;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .tradition-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .tradition-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-style: italic;
+            color: var(--primary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .tradition-quote::before,
+        .tradition-quote::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.3;
+            position: absolute;
+            font-family: Georgia, serif;
+        }
+
+        .tradition-quote::before {
+            top: -20px;
+            left: -10px;
+        }
+
+        .tradition-quote::after {
+            bottom: -40px;
+            right: -10px;
+        }
+
+        .tradition-author {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+        }
+
+        /* Process Section */
+        .process {
+            position: relative;
+            padding: 5rem 0;
+            background: var(--white);
+            overflow: hidden;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, rgba(210, 105, 30, 0.1) 0%, rgba(139, 69, 19, 0.1) 100%);
+            border: 1px solid rgba(210, 105, 30, 0.3);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--stone), var(--accent), var(--primary), var(--stone));
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .process-step {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .process-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--cream);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .process-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--accent);
+        }
+
+        .process-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .process-desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* Products Section */
+        .products {
+            position: relative;
+            padding: 5rem 0;
+            background: var(--gray-50);
+            overflow: hidden;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid var(--gray-100);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-image {
+            position: relative;
+            height: 280px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--stone) 100%);
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: var(--white);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .product-info {
+            padding: 1.75rem;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-weight {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            background: var(--cream);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .product-description {
+            color: var(--gray-600);
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .price-amount {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .price-unit {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: var(--cream);
+            padding: 0.4rem 0.7rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .feature-tag:hover {
+            background: rgba(210, 105, 30, 0.15);
+        }
+
+        .feature-tag svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Origin Section */
+        .origin {
+            position: relative;
+            padding: 5rem 0;
+            background: var(--white);
+            overflow: hidden;
+        }
+
+        .origin-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .origin-visual {
+            position: relative;
+        }
+
+        .origin-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .origin-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .origin-stat-card {
+            position: absolute;
+            bottom: -25px;
+            right: -15px;
+            background: var(--white);
+            padding: 1.25rem 1.5rem;
+            border-radius: 14px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            animation: statFloat 3s ease-in-out infinite;
+            border: 2px solid var(--cream);
+        }
+
+        .origin-stat-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+        }
+
+        .origin-stat-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+        }
+
+        .origin-stat-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .origin-stat-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        @keyframes statFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .origin-features {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .origin-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.25rem;
+            background: var(--cream);
+            border-radius: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .origin-feature:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow);
+        }
+
+        .origin-feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .origin-feature-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .origin-feature-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .origin-feature-desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* Quality Section */
+        .quality {
+            position: relative;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            overflow: hidden;
+        }
+
+        .quality-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .quality-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .quality-feature {
+            padding: 1.25rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .quality-feature:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .quality-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+        }
+
+        .quality-feature-icon svg {
+            width: 26px;
+            height: 26px;
+            color: var(--white);
+        }
+
+        .quality-feature-title {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .quality-feature-desc {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            line-height: 1.4;
+        }
+
+        .quality-visual {
+            position: relative;
+        }
+
+        .quality-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+
+        .quality-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Testimonial */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 0.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .testimonial-stars svg {
+            width: 18px;
+            height: 18px;
+            fill: #fbbf24;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-author::before {
+            content: '';
+            width: 25px;
+            height: 2px;
+            background: var(--accent-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+            padding: 5rem 0;
+            background: var(--gray-50);
+            overflow: hidden;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form-container {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: var(--gray-700);
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .form-submit {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.9rem;
+            font-size: 1rem;
+        }
+
+        .contact-info {
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-info-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border: 1px solid var(--gray-100);
+        }
+
+        .contact-card:hover {
+            transform: translateX(8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .contact-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
+        }
+
+        .contact-card-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-card-text {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .map-container {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border: 1px solid var(--gray-100);
+        }
+
+        .map-placeholder {
+            height: 150px;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--stone) 100%);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 2px 2px, var(--gray-300) 1px, transparent 0);
+            background-size: 16px 16px;
+            opacity: 0.3;
+        }
+
+        .map-placeholder svg {
+            width: 36px;
+            height: 36px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+            animation: mapPin 2s ease-in-out infinite;
+        }
+
+        @keyframes mapPin {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .map-placeholder span {
+            font-weight: 600;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+            font-size: 0.95rem;
+        }
+
+        .map-address {
+            margin-top: 0.75rem;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            position: relative;
+            padding: 4rem 0;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-text p {
+            color: var(--gray-600);
+            font-size: 1rem;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            white-space: nowrap;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        .cta-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 4rem 0 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .footer-brand {
+            max-width: 280px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .footer-logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-logo-subtitle {
+            font-size: 0.6rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-description {
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            color: var(--white);
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--accent-light);
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .process-timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .origin-content,
+            .quality-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .quality-content {
+                text-align: center;
+            }
+
+            .cta-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar-right {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .navbar .btn-primary {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                gap: 0.75rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+                min-width: 100px;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .quality-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                max-width: 100%;
+            }
+
+            .footer-logo {
+                justify-content: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tradition-quote {
+                font-size: 1.35rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar-left {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 1.65rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+            }
+
+            .stat-item {
+                width: 100%;
+            }
+
+            .contact-form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <a href="tel:+59172000000" class="top-bar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    +591 72 000 000
+                </a>
+                <a href="mailto:ventas@estucovichaya.com" class="top-bar-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    ventas@estucovichaya.com
+                </a>
+            </div>
+            <div class="top-bar-right">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Toloco, Vichaya - La Paz, Bolivia
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">E</div>
+                <div class="logo-text">
+                    <span class="logo-name">ESTUCO</span>
+                    <span class="logo-subtitle">VICHAYA</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="#producto">Producto</a></li>
+                <li><a href="#origen">Origen</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#contacto" class="btn-primary">
+                Cotizar
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-header">
+                <div class="logo">
+                    <div class="logo-icon">E</div>
+                    <div class="logo-text">
+                        <span class="logo-name">ESTUCO</span>
+                        <span class="logo-subtitle">VICHAYA</span>
+                    </div>
+                </div>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#proceso">Proceso Artesanal</a></li>
+                <li><a href="#producto">Nuestro Producto</a></li>
+                <li><a href="#origen">Origen</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-cta">
+                <a href="#contacto" class="btn-primary">
+                    Solicitar Cotización
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <img src="1767517278640_image.png" alt="Canteras de Vichaya" class="hero-bg-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Tradición Artesanal de los Andes
+                </div>
+                <h1 class="hero-title">
+                    Estuco Artesanal desde las <span>Canteras de Vichaya</span>
+                </h1>
+                <p class="hero-description">
+                    Desde la comunidad de Toloco en Vichaya, La Paz, nuestras familias canteras extraen y procesan artesanalmente la piedra blanca de los Andes para crear estuco de calidad tradicional, siguiendo técnicas heredadas por generaciones.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#producto" class="btn-primary">
+                        Ver Producto
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#contacto" class="btn-secondary">
+                        Contactar
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">Familias</div>
+                        <div class="stat-label">Canteras Artesanales</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Natural y Artesanal</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-number">Generaciones</div>
+                        <div class="stat-label">De Tradición</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <img src="1767517267142_image.png" alt="Producción Artesanal" class="hero-image">
+                </div>
+                <div class="hero-product-float">
+                    <img src="Gemini_Generated_Image_esitl3esitl3esit.png" alt="Estuco Vichaya">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tradition Quote -->
+    <section class="tradition">
+        <div class="tradition-content reveal">
+            <p class="tradition-quote">
+                El estuco de Vichaya nace de la tierra andina, cocido con fuego de leña y guano, molido con el esfuerzo de nuestras manos. Cada bolsa lleva la tradición de nuestros ancestros.
+            </p>
+            <p class="tradition-author">— Canteros de Toloco, Vichaya</p>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="proceso">
+        <div class="animated-bg">
+            <div class="texture-overlay"></div>
+            <div class="particle particle-1" style="top: 10%; left: 5%;"></div>
+            <div class="particle particle-2" style="top: 60%; right: 10%;"></div>
+        </div>
+
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    Proceso Artesanal
+                </span>
+                <h2 class="section-title">Cómo Hacemos Nuestro Estuco</h2>
+                <p class="section-subtitle">
+                    Un proceso tradicional que ha pasado de generación en generación, donde cada paso se realiza con dedicación y conocimiento ancestral.
+                </p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step reveal" style="transition-delay: 0.1s;">
+                    <div class="process-number">1</div>
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">Extracción</h3>
+                    <p class="process-desc">Los canteros extraen manualmente la piedra blanca de los yacimientos de Toloco, similar al mármol blanco.</p>
+                </div>
+
+                <div class="process-step reveal" style="transition-delay: 0.2s;">
+                    <div class="process-number">2</div>
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">Cocción</h3>
+                    <p class="process-desc">En hornos artesanales de 2-3 metros, las piedras se cuecen durante un día completo con aserrín, leña y guano.</p>
+                </div>
+
+                <div class="process-step reveal" style="transition-delay: 0.3s;">
+                    <div class="process-number">3</div>
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M3 12h4m10 0h4M12 3v4m0 10v4"/>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">Molienda</h3>
+                    <p class="process-desc">La piedra cocida, ahora blanca y suave, se muele en molinos impulsados por motores reciclados de camión.</p>
+                </div>
+
+                <div class="process-step reveal" style="transition-delay: 0.4s;">
+                    <div class="process-number">4</div>
+                    <div class="process-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m7.5 4.27 9 5.15"/>
+                            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                            <path d="m3.3 7 8.7 5 8.7-5"/>
+                            <path d="M12 22V12"/>
+                        </svg>
+                    </div>
+                    <h3 class="process-title">Embolsado</h3>
+                    <p class="process-desc">El estuco molido se envasa manualmente en bolsas de 18 kg, listo para la construcción.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="products" id="producto">
+        <div class="animated-bg">
+            <div class="particle particle-1" style="top: 20%; right: 5%;"></div>
+            <div class="particle particle-3" style="bottom: 15%; left: 10%;"></div>
+        </div>
+
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="m7.5 4.27 9 5.15"/>
+                        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                    </svg>
+                    Nuestro Producto
+                </span>
+                <h2 class="section-title">Estuco Vichaya</h2>
+                <p class="section-subtitle">
+                    Estuco natural de alta calidad, elaborado artesanalmente desde las canteras de Toloco para la industria de la construcción boliviana.
+                </p>
+            </div>
+
+            <div class="product-card reveal">
+                <div class="product-image">
+                    <img src="Gemini_Generated_Image_esitl3esitl3esit.png" alt="Estuco Vichaya">
+                    <span class="product-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Artesanal
+                    </span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Estuco Vichaya Tradicional</h3>
+                    <span class="product-weight">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                            <path d="m7.5 4.27 9 5.15"/>
+                            <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                        </svg>
+                        Bolsa de 18 kg
+                    </span>
+                    <p class="product-description">
+                        Estuco elaborado con piedra blanca de los yacimientos de Toloco, cocido en hornos artesanales con una mezcla de aserrín, leña y guano que garantiza un producto de calidad superior para acabados de construcción.
+                    </p>
+                    <div class="product-price">
+                        <span class="price-amount">Bs 11</span>
+                        <span class="price-unit">por bolsa (puesto en cantera)</span>
+                    </div>
+                    <div class="product-features">
+                        <span class="feature-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            100% Natural
+                        </span>
+                        <span class="feature-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Cocción tradicional
+                        </span>
+                        <span class="feature-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Anti-rajaduras
+                        </span>
+                        <span class="feature-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            Alta adherencia
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Origin Section -->
+    <section class="origin" id="origen">
+        <div class="section-container">
+            <div class="origin-content">
+                <div class="origin-visual reveal-left">
+                    <div class="origin-image">
+                        <img src="1767517278640_image.png" alt="Canteras de Toloco, Vichaya">
+                    </div>
+                    <div class="origin-stat-card">
+                        <div class="origin-stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m7.5 4.27 9 5.15"/>
+                                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                            </svg>
+                        </div>
+                        <div class="origin-stat-number">600-800</div>
+                        <div class="origin-stat-label">Bolsas por horneada</div>
+                    </div>
+                </div>
+
+                <div class="origin-text reveal-right">
+                    <span class="section-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        Nuestro Origen
+                    </span>
+                    <h2 class="section-title">Desde Toloco, Vichaya</h2>
+                    <p style="color: var(--gray-600); line-height: 1.7; font-size: 1.05rem;">
+                        Nuestras canteras se encuentran en la comunidad de Toloco, cerca de Caquiaviri, donde las familias canteras viven junto a los yacimientos de piedra blanca. Es un trabajo comunitario donde cada horneada produce entre 600 y 800 bolsas de estuco de 18 kg.
+                    </p>
+
+                    <div class="origin-features">
+                        <div class="origin-feature">
+                            <div class="origin-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="origin-feature-title">Yacimientos Propios</h4>
+                                <p class="origin-feature-desc">Vetas de piedra blanca similar al mármol, extraídas a poca profundidad de la tierra andina.</p>
+                            </div>
+                        </div>
+
+                        <div class="origin-feature">
+                            <div class="origin-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="origin-feature-title">Trabajo Familiar</h4>
+                                <p class="origin-feature-desc">Familias canteras que viven en el lugar, dedicadas a la extracción, cocción, molienda y embolsado.</p>
+                            </div>
+                        </div>
+
+                        <div class="origin-feature">
+                            <div class="origin-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="origin-feature-title">Ciclo de 4-5 Días</h4>
+                                <p class="origin-feature-desc">Cada horneada toma aproximadamente una semana completa desde la extracción hasta el embolsado final.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Section -->
+    <section class="quality">
+        <div class="section-container">
+            <div class="quality-content">
+                <div class="reveal-left">
+                    <span class="section-badge" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: var(--cream);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        Calidad Artesanal
+                    </span>
+                    <h2 class="section-title" style="color: var(--white);">El Secreto de Nuestro Estuco</h2>
+                    <p style="opacity: 0.9; line-height: 1.7; font-size: 1.05rem;">
+                        La calidad del estuco Vichaya viene del uso de guano en la cocción, un secreto ancestral que evita que el estuco se raje una vez aplicado en las construcciones.
+                    </p>
+
+                    <div class="quality-features">
+                        <div class="quality-feature">
+                            <div class="quality-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <h4 class="quality-feature-title">Anti-Rajaduras</h4>
+                            <p class="quality-feature-desc">El guano en la cocción previene grietas.</p>
+                        </div>
+
+                        <div class="quality-feature">
+                            <div class="quality-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                                </svg>
+                            </div>
+                            <h4 class="quality-feature-title">Alta Adherencia</h4>
+                            <p class="quality-feature-desc">Se adhiere firmemente a cualquier superficie.</p>
+                        </div>
+
+                        <div class="quality-feature">
+                            <div class="quality-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                                </svg>
+                            </div>
+                            <h4 class="quality-feature-title">Blanco Natural</h4>
+                            <p class="quality-feature-desc">Color blanco puro de la piedra andina.</p>
+                        </div>
+
+                        <div class="quality-feature">
+                            <div class="quality-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </div>
+                            <h4 class="quality-feature-title">Acabado Superior</h4>
+                            <p class="quality-feature-desc">Terminaciones lisas y uniformes.</p>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <p class="testimonial-text">
+                            "El estuco de Vichaya es preferido por los constructores de El Alto por su calidad y porque no se raja. Vale cada boliviano."
+                        </p>
+                        <div class="testimonial-author">
+                            Constructor de El Alto
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quality-visual reveal-right">
+                    <div class="quality-image">
+                        <img src="1767517254195_image.png" alt="Aplicación de Estuco Vichaya">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="animated-bg">
+            <div class="particle particle-1" style="top: 20%; right: 10%;"></div>
+            <div class="particle particle-2" style="bottom: 30%; left: 5%;"></div>
+        </div>
+
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Contáctenos
+                </span>
+                <h2 class="section-title">Haga su Pedido</h2>
+                <p class="section-subtitle">
+                    Los compradores pueden venir directamente a nuestras canteras en Toloco con sus camiones. También coordinamos entregas.
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-form-container reveal-left">
+                    <h3 class="form-title">Solicitar Cotización</h3>
+                    <form id="contactForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" class="form-input" placeholder="Su nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Teléfono</label>
+                                <input type="tel" class="form-input" placeholder="+591" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Cantidad de Bolsas (18 kg c/u)</label>
+                                <select class="form-select" required>
+                                    <option value="">Seleccione cantidad</option>
+                                    <option value="100">100 - 200 bolsas</option>
+                                    <option value="300">300 - 500 bolsas</option>
+                                    <option value="600">600 - 800 bolsas (1 horneada)</option>
+                                    <option value="1000">Más de 1000 bolsas</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Mensaje</label>
+                                <textarea class="form-textarea" placeholder="¿Necesita transporte? ¿Cuándo lo necesita?"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                            Enviar Pedido
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info reveal-right">
+                    <div class="contact-info-grid">
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Teléfono</h4>
+                                <p class="contact-card-text">+591 72 000 000</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Ubicación</h4>
+                                <p class="contact-card-text">Comunidad Toloco, Vichaya<br>Cerca de Caquiaviri, La Paz</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13"/>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                                    <circle cx="5.5" cy="18.5" r="2.5"/>
+                                    <circle cx="18.5" cy="18.5" r="2.5"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="contact-card-title">Retiro en Cantera</h4>
+                                <p class="contact-card-text">Venga con su camión directamente</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span>Canteras de Toloco</span>
+                        </div>
+                        <p class="map-address">Zona de Vichaya, cerca de Caquiaviri, La Paz - Bolivia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>¿Necesita Estuco para su Construcción?</h2>
+                <p>Ofrecemos precios directos de cantera. Llévese su carga completa de 600-800 bolsas por horneada.</p>
+            </div>
+            <a href="#contacto" class="cta-btn">
+                Hacer Pedido
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">E</div>
+                    <div>
+                        <div class="footer-logo-text">ESTUCO</div>
+                        <div class="footer-logo-subtitle">VICHAYA</div>
+                    </div>
+                </div>
+                <p class="footer-description">
+                    Productores artesanales de estuco desde las canteras de Toloco, Vichaya. Tradición andina al servicio de la construcción boliviana.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Enlaces</h4>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#proceso">Proceso Artesanal</a></li>
+                    <li><a href="#producto">Nuestro Producto</a></li>
+                    <li><a href="#origen">Origen</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Información</h4>
+                <ul class="footer-links">
+                    <li><a href="#producto">Bolsa de 18 kg</a></li>
+                    <li><a href="#contacto">Precios de Cantera</a></li>
+                    <li><a href="#contacto">Pedidos por Horneada</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-title">Contacto</h4>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>Toloco, Vichaya<br>La Paz, Bolivia</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>+591 72 000 000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2026 Estuco Vichaya - Canteras Artesanales de Toloco</p>
+            <div class="footer-legal">
+                <a href="#">Tradición Andina</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-links a, .mobile-cta a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 120;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Create hero particles
+        const heroParticles = document.getElementById('heroParticles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('hero-particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = Math.random() * 6 + 3 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDelay = Math.random() * 25 + 's';
+            particle.style.animationDuration = Math.random() * 25 + 20 + 's';
+            heroParticles.appendChild(particle);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('.form-submit');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                ¡Pedido Enviado!
+            `;
+            btn.style.background = 'linear-gradient(135deg, #2a8f2a 0%, #3eb53e 100%)';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.style.background = '';
+                this.reset();
+            }, 3000);
+        });
+
+        // Parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.006;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.006;
+            
+            document.querySelectorAll('.particle').forEach(particle => {
+                particle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
